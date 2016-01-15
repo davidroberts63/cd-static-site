@@ -45,11 +45,22 @@
 					<h1>Of Static Sites</h1>
 					<h4>Yes, you can deploy from your phone!</h4>
 					<p>Presented by David Roberts @davidroberts63</p>
+					
+					<aside class="notes" data-markdown>
+						## Thank intro
+						## Enjoy pipeline
+					</aside>
 				</section>
 
 				<section>
 					<h2>Github & Jekyll</h2>
 					<img data-src="img/octojekyll.png" alt="Github and Jekyll">
+					
+					<aside class="notes" data-markdown>
+						### Integration
+						### Choice
+						### Commit master it gens
+					</aside>
 				</section>
 
 				<section>
@@ -70,17 +81,29 @@
 						<div>DigitalOcean</div>
 						<div>DreamHost</div>
 					</div>
+					
+					<aside class="notes" data-markdown>
+						#### javascript
+						#### ruby
+						#### python
+						#### pretzel, wyam
+						## Pick a Tool
+					</aside>
 				</section>
 				
 				<section>
-					<h2>Hexo.io Config</h2>
-					<h4>_config.yml</h4>
+					<h2 style="display: inline-block">Hexo.io Config</h2>
+					<h4 style="display: inline-block"> : _config.yml</h4>
 					<pre><code class="javascript" data-trim contenteditable>
 deploy:
   type: git
   repository: https://github.com/techlahoma/okcsharp-website.git
   branch: gh-pagess
 					</code></pre>
+					
+					<aside class="notes" data-markdown>
+						### More than just this part
+					</aside>
 				</section>
 				
 				<section>
@@ -94,6 +117,13 @@ deploy:
 					<div>Hands off</div>
 					<div>Consistent</div>
 					<div>Just write post</div>
+					
+					<aside class="notes" data-markdown>
+						### Why automate
+						### Non event
+						### Easy to update
+						### Less to think about
+					</aside>
 				</section>
 				
 				<section>
@@ -105,8 +135,19 @@ deploy:
 				</section>
 				
 				<section>
-					<h2>Circle CI config</h2>
-					<h4>circle.yml</h4>
+					<h2>Circle CI</h2>
+					<img data-src="img/circle-ci-screenshot.png" />
+					
+					<aside class="notes" data-markdown>
+						### Tried Travis
+						### CircleCI FASTER
+						### Default Node/Ruby config out of box
+					</aside>
+				</section>
+				
+				<section>
+					<h2 style="display: inline-block">Circle CI config</h2>
+					<h4 style="display: inline-block"> : circle.yml</h4>
 					<pre><code class="hljs" data-trim contenteditable>
 deployment:
   production:
@@ -124,12 +165,22 @@ deployment:
 					</code></pre>
 					
 					<h4 class="fragment fade-in">Deployed! But we can do more</h4>
+					
+					<aside class="notes" data-markdown>
+						### Pull away from Jekyll intergration
+						### Many options
+					</aside>
 				</section>
 		
 				<section>
 					<h2>Preview Static Site</h2>
 					<h4>Inside the pull request</h4>
 					<img data-src="img/site-preview.png" />
+					
+					<aside class="notes" data-markdown>
+						### Instead of PULL and look
+						### Never remember PR git ref
+					</aside>
 				</section>
 				
 				<section>
@@ -143,6 +194,10 @@ test:
         background: true
     - sleep 2
     - phantomjs ./screenshots.js</code></pre>
+					<aside class="notes" data-markdown>
+						### Before was DEPLOY
+						### Each command SSH connection
+					</aside>
 				</section>
 				
 				<section>
@@ -174,6 +229,12 @@ home.open("http://localhost:4000/", function() {
 		renderPage(task, callback);
 	}
 }</code></pre>
+
+					<aside class="notes" data-markdown>
+						### Prob Phantom Open and Screenshot
+						### SRP helped processing and shutdown
+						### More in render vs opening
+					</aside>
 				</section>
 				
 				<section>
@@ -193,6 +254,11 @@ home.open("http://localhost:4000/", function() {
 		callback();
 	});
 }</code></pre>
+					<aside class="notes" data-markdown>
+						### Home, Page, Desktop
+						### Home, Page, Mobile
+						### WebPage is left open
+					</aside>
 				</section>
 								
 				<section>
@@ -211,6 +277,12 @@ home.open("http://localhost:4000/", function() {
 	
 	callback();
 }</code></pre>
+
+					<aside class="notes" data-markdown>
+						### One size at a time
+						### Possible parallel
+						### Single focus
+					</aside>
 				</section>
 				
 				<section>
@@ -225,12 +297,21 @@ var sizes = [
 				<section>
 					<h2>Result</h2>
 					<img data-src="img/site-preview-files.png"/>
+					
+					<aside class="notes" data-markdown>
+						### Note the CSS artifact
+					</aside>
 				</section>
 				
 				<section>
 					<h2>Build artifacts</h2>
 					<img data-src="img/build-artifacts.png" />
 					<h4 class="fragment fade-in">Got screenshots! But we can do more</h4>
+					
+					<aside class="notes" data-markdown>
+						### Can stop here
+						### Site own just needs to look at build
+					</aside>
 				</section>
 				
 				<section>
@@ -241,6 +322,11 @@ notify:
     - url: https://awesome-app.someplace.com/pr-build-completion</code></pre>
 					
 					<div>Repo, Build number, PR url
+						
+					<aside class="notes" data-markdown>
+						### Slack, Hipchat, ChatOps
+						### Info needed to get screenshots
+					</aside>
 				</section>
 				
 				<section>
@@ -248,6 +334,10 @@ notify:
 					<h4>Node Screenshot Poster</h4>
 					<h4>Express.js</h4>
 					<img data-src="img/expressjs.png" />
+					
+					<aside class="notes" data-markdown>
+						# HEROKU
+					</aside>
 				</section>
 				
 				<section>
@@ -262,9 +352,12 @@ pull = pull.substring(pull.lastIndexOf("/") + 1);
 
 var url = "https://circleci.com/api/v1/project/" + 
 	settings.circleCiAccount + "/" + project + "/" + build + 
-	"/artifacts?circle-token=" + settings.circleCiToken;
-
-request({url: url, headers: { "Accept": "application/json"} }, function(err, response, body) {
+	"/artifacts?circle-token=" + settings.circleCiToken;</code></pre>
+				</section>
+				
+				<section>
+					<h2>Route and handoff</h2>
+<pre><code class="javascript">request({url: url, headers: { "Accept": "application/json"} }, function(err, response, body) {
 	var payload = JSON.parse(body);
 	var screenshots = payload.map(theUrl).filter(forImages);
 
@@ -276,7 +369,6 @@ request({url: url, headers: { "Accept": "application/json"} }, function(err, res
 		res.json({completum: "yep"});
 	});
 });</code></pre>
-					
 				</section>
 				
 				<section>
@@ -311,9 +403,12 @@ function forImages(image) {
   var comment = "";
   for(var image of cdnUrls) {
     comment += image.name + "\r\n" + "![" + image.name + " screenshot](" + image.url + ")\r\n";
-  }
-
-  github.issues.createComment({
+  }</code></pre>
+				</section>
+				
+				<section>
+					<h2>poster.postImagesToissue</h2>
+					<pre><code class="javascript">github.issues.createComment({
     user: settings.orgName,
     repo: settings.repoName,
     number: settings.prNumber,
@@ -321,20 +416,52 @@ function forImages(image) {
   }, function(err, res) { ... });
 
   callback(null);
-});
+});</code></pre>
 
-</code></pre>
+					<aside class="notes" data-markdown>
+						### At this point
+						### Circle CI -> pr-build-completion
+						### ask for artifacts
+						### post to issue
+					</aside>
 				</section>
 				
 				<section>
 					<h2>Final PR result</h2>
 					<img data-src="img/pr-screenshot.png" />
+					
+					<aside class="notes" data-markdown>
+						### PR
+						### Build -> Screenshots -> Comment
+						### Merge -> Build -> Deploy Master
+					</aside>
+				</section>
+				
+				<section>
+					<h2>Flow</h2>
+					
+					<div>PR -> build branch -> screenshots -> comment</div>
+					<div>&nbsp;</div>
+					<div>Merge -> build master -> deploy master</div>
+					
+					<aside class="notes" data-markdown>
+						### Helped out okcsharp
+					</aside>
 				</section>
 				
 				<section>
 					<h2>Questions</h2>
 					<h4>@davidroberts63</h4>
 					<h4>teapotcoder.com</h4>
+				</section>
+				
+				<section data-markdown>
+					<script type="text/template">
+					## Links
+					- https://hexo.io/
+					- https://circleci.com/
+					- http://expressjs.com/
+					</script>
 				</section>
 			</div>
 
